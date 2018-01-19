@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {MatrixClientService} from './matrix-client/matrix-client.service';
+import {MatrixClientService} from './matrix/matrix-client/matrix-client.service';
 import {Observable} from 'rxjs/Observable';
 
 @Component({

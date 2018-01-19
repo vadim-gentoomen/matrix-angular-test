@@ -1,12 +1,12 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
 
 
-import { ServiceWorkerModule } from '@angular/service-worker';
-import { AppComponent } from './app.component';
+import {ServiceWorkerModule} from '@angular/service-worker';
+import {AppComponent} from './app.component';
 
-import { environment } from '../environments/environment';
-import {MatrixClientService} from './matrix-client/matrix-client.service';
+import {environment} from '../environments/environment';
+import {MatrixModule} from './matrix/matrix.module';
 
 @NgModule({
   declarations: [
@@ -14,12 +14,13 @@ import {MatrixClientService} from './matrix-client/matrix-client.service';
   ],
   imports: [
     BrowserModule,
-    ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production })
+    ServiceWorkerModule.register('/ngsw-worker.js', {enabled: environment.production}),
+    MatrixModule.forRoot(),
   ],
-  providers: [MatrixClientService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {
-  constructor(private _matrixClientService: MatrixClientService) {
+  constructor() {
   }
 }

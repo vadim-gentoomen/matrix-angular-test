@@ -3,8 +3,7 @@ import * as Matrix from 'matrix-js-sdk';
 import {Subject} from 'rxjs/Subject';
 import {Observable} from 'rxjs/Observable';
 import {publishReplay, refCount} from 'rxjs/operators';
-import {environment} from '../../environments/environment';
-import * as _ from 'lodash';
+import {environment} from '../../../environments/environment';
 import {LoginData} from './models/matrix.model';
 import 'rxjs/add/observable/fromPromise';
 import 'rxjs/add/operator/catch';
@@ -33,14 +32,11 @@ export class MatrixClientService {
     Observable.fromPromise(this.matrixClient.loginWithPassword('@vadim_dynnik:dev-tigase.krtech.ru', '101212dva'))
       .subscribe({
         next: (data) => {
-          console.log(data);
+          // console.log(data);
           this._loginData$.next(<LoginData> data);
         },
         error: (err) => console.error(err)
       });
-
-
-
   }
 
   _createTemporaryClient() {
