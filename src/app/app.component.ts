@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import {MatrixClientService} from './matrix-client/matrix-client.service';
+import {Observable} from 'rxjs/Observable';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app';
+  data: Observable<any>;
+
+  constructor(private _matrixClientService: MatrixClientService) {
+    this.data = this._matrixClientService.loginData$;
+  }
 }
