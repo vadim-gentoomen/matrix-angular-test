@@ -8,7 +8,6 @@ import {Observable} from 'rxjs/Observable';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app';
   data: Observable<any>;
 
   constructor(private _matrixClientService: MatrixClientService) {

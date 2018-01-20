@@ -8,7 +8,7 @@ export enum AuthenticationTypes {
 }
 
 export interface LoginData {
-  homeserverUrl: string;
+  homeServerUrl: string;
   identityServerUrl: string;
   userId: string;
   deviceId: string;
