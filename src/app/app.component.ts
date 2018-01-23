@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {MatrixClientService} from './matrix/matrix-client/matrix-client.service';
+import {LoginService} from './matrix/authentication/login';
 import {Observable} from 'rxjs/Observable';
 
 @Component({
@@ -10,7 +10,11 @@ import {Observable} from 'rxjs/Observable';
 export class AppComponent {
   data: Observable<any>;
 
-  constructor(private _matrixClientService: MatrixClientService) {
-    this.data = this._matrixClientService.loginData$;
+  constructor(private loginService: LoginService) {
+    this.data = this.loginService.loginData$;
+  }
+
+  logout() {
+    this.loginService.logout();
   }
 }
