@@ -20,7 +20,7 @@ import {LoginUrl} from '../model/urls.model';
 export class LoginService {
 
   private _loginData$: BehaviorSubject<LoginData> = new BehaviorSubject(null);
-  private _loginSubmitObject: Subject<LoginSubmitObject> = new Subject();
+  private _loginSubmitObject$: Subject<LoginSubmitObject> = new Subject();
 
   public loginData$: Observable<LoginData> = this._loginData$.asObservable()
     .pipe(
@@ -29,9 +29,9 @@ export class LoginService {
 
   constructor(private _localStorageService: LocalStorageService,
               private _http: HttpClient,
-              private logger: NGXLogger) {
+              private _logger: NGXLogger) {
 
-    this._loginSubmitObject
+    this._loginSubmitObject$
       .subscribe((loginSubmit: LoginSubmitObject) => {
 
         this._http.post(`${environment.homeServer}${LoginUrl.Login}`, loginSubmit)
@@ -50,7 +50,7 @@ export class LoginService {
                 });
 
             },
-            error: (err) => this.logger.error(err)
+            error: (err) => this._logger.error(err)
           });
 
         });
@@ -65,16 +65,16 @@ export class LoginService {
           .subscribe({
             next: () => {
               this._localStorageService.removeItem(LOGIN_DATA);
-              this.logger.debug('logout');
+              this._logger.debug('logout');
             },
-            error: (err) => this.logger.error(err)
+            error: (err) => this._logger.error(err)
           });
       });
 
     // TODO: удалить, когда будет компонент
     this.login({
       type: AuthenticationTypes.Password,
-      user: '@vadim_dynnik:dev-tigase.krtech.ru',
+      user: '@vadim:dev-tigase.krtech.ru',
       password: '101212dva'
     });
 
@@ -92,7 +92,7 @@ export class LoginService {
    * @param {LoginSubmitObject} loginSubmitObject
    */
   login(loginSubmitObject: LoginSubmitObject): void {
-    this._loginSubmitObject.next(loginSubmitObject);
+    this._loginSubmitObject$.next(loginSubmitObject);
   }
 
 }

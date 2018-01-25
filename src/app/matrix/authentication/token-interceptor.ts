@@ -1,6 +1,6 @@
 import {Injectable, Injector} from '@angular/core';
 import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
-import {LoginService} from './login';
+import {LoginService} from './login.service';
 import {LoginData} from './authenticion.model';
 import {Observable} from 'rxjs/Observable';
 

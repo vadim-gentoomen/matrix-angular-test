@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import {LoginService} from './matrix/authentication/login';
+import {LoginService} from './matrix/authentication/login.service';
 import {Observable} from 'rxjs/Observable';
+import {RoomService} from './matrix/room/room.service';
 
 @Component({
   selector: 'app-root',
@@ -8,10 +9,13 @@ import {Observable} from 'rxjs/Observable';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  data: Observable<any>;
+  data1: Observable<any>;
+  data2: Observable<any>;
 
-  constructor(private loginService: LoginService) {
-    this.data = this.loginService.loginData$;
+  constructor(private loginService: LoginService,
+              private roomService: RoomService) {
+    this.data1 = this.loginService.loginData$;
+    this.data2 = this.roomService.room$;
   }
 
   logout() {

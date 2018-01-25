@@ -9,3 +9,5 @@ export enum RegisterUrl {
   Logout = '/_matrix/client/r0/logout',
   Fallback = '/_matrix/static/client/login/',
 }
+
+export const CreateRoomUrl = '/_matrix/client/r0/createRoom';
